@@ -16,7 +16,7 @@ router.get("/", async (req: Request, res: Response) => {
 });
 
 // Get user by ID
-router.get("/:id", async (req: Request, res: Response) => {
+router.get("/:id", async (req: Request, res: Response): Promise<any> => {
     try {
         const id = parseInt(req.params.id);
         const user = await getUserById(id);
@@ -33,7 +33,7 @@ router.get("/:id", async (req: Request, res: Response) => {
 });
 
 // Create new user
-router.post("/", async (req: Request, res: Response) => {
+router.post("/", async (req: Request, res: Response): Promise<any> => {
     try {
         const userInput: UserInput = req.body;
 
@@ -56,7 +56,7 @@ router.post("/", async (req: Request, res: Response) => {
 });
 
 // Update user
-router.put("/:id", async (req: Request, res: Response) => {
+router.put("/:id", async (req: Request, res: Response): Promise<any> => {
     try {
         const id = parseInt(req.params.id);
         const userInput: UserInput = req.body;
@@ -84,7 +84,7 @@ router.put("/:id", async (req: Request, res: Response) => {
 });
 
 // Delete user
-router.delete("/:id", async (req: Request, res: Response) => {
+router.delete("/:id", async (req: Request, res: Response): Promise<any> => {
     try {
         const id = parseInt(req.params.id);
         const success = await deleteUser(id);
