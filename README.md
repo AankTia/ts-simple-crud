@@ -41,7 +41,7 @@ The API routes handle:
 | GET    | /api/users/:id | Get a single user |
 | POST   | /api/users     | Create a new user |
 | PUT    | /api/users/:id | Update a user     |
-| DELETE | /api/users     | xDelete a userxx  |
+| DELETE | /api/users     | Delete a user     |
 
 ---
 
