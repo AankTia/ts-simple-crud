@@ -11,7 +11,7 @@ export async function connectDb() {
 
     await db.exec(`
         CREATE TABLE IF NOT EXISTS users (
-            id INTEGER PROMARU KEY AUTOINCREMENT,
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
             name TEXT NOT NULL,
             email TEXT UNIQUE NOT NULL,
             created_at DATETIME DEFAULT CURRENT_TIMESTAMP
