@@ -37,8 +37,8 @@ export async function updateUser(id: number, user: UserInput): Promise<User | un
     return await getUserById(id);
 }
 
-export async function deleteUser(id: number): Promise<boolean> {
-    const db = getDb();
-    const result = await db.run("DELETE FROM users, WHERE id = ?", id);
-    return result.changes > 0;
-}
+// export async function deleteUser(id: number): Promise<boolean> {
+//     const db = getDb();
+//     const result = await db.run("DELETE FROM users, WHERE id = ?", id);
+//     return result.changes > 0;
+// }
