@@ -47,9 +47,9 @@ router.post("/", async (req: Request, res: Response): Promise<any> => {
         console.error("Error creating user:", error);
 
         // Check for unique constraint violation (email already exists)
-        if (error.message?.includes("UNIQUE constraint failed")) {
-            return res.status(409).json({ error: "Email already exists" });
-        }
+        // if (error.message?.includes("UNIQUE constraint failed")) {
+        //     return res.status(409).json({ error: "Email already exists" });
+        // }
 
         res.status(500).json({ error: "Failed to create user" });
     }
@@ -75,9 +75,9 @@ router.put("/:id", async (req: Request, res: Response): Promise<any> => {
     } catch (error) {
         console.error("Error updating user:", error);
 
-        if (error.message?.includes("UNIQUE constraint failed")) {
-            return res.status(409).json({ error: "Email already exists" });
-        }
+        // if (error.message?.includes("UNIQUE constraint failed")) {
+        //     return res.status(409).json({ error: "Email already exists" });
+        // }
 
         res.status(500).json({ error: "Failed to update user" });
     }
