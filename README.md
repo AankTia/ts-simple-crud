@@ -99,7 +99,7 @@ First, create a new project and install dependencies:
 
    npm init -y
 
-   mkdir src src/db src/model src/routes src/public
+   mkdir src src/db src/models src/routes src/public
    ```
 
 2. Install Dependecies
