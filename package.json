@@ -1,0 +1,12 @@
+{
+  "name": "ts-simple-crud",
+  "version": "1.0.0",
+  "description": "CRUD (Create, Read, Update, Delete) web application using TypeScript and SQLite.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "Tia Widi",
+  "license": "ISC"
+}
