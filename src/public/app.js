@@ -24,7 +24,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         if (userId) {
             // Update existing user
-            await UpdateUser(userId, user);
+            await updateUser(userId, user);
         } else {
             // Create new user
             await createUser(user);
@@ -84,11 +84,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
         // Add event listeners to edit and delete buttons
         document.querySelectorAll(".edit-btn").forEach((btn) => {
-            btn.addEventListener("click", () => editUser(btn.CDATA_SECTION_NODE.id));
+            btn.addEventListener("click", () => editUser(btn.dataset.id));
         });
 
         document.querySelectorAll(".delete-btn").forEach((btn) => {
-            btn.addEventListener("clicl", () => deleteUser(btn.CDATA_SECTION_NODE.id));
+            btn.addEventListener("clicl", () => deleteUser(btn.dataset.id));
         });
     }
 
@@ -116,10 +116,76 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     // Load user data for editing
+    async function editUser(id) {
+        try {
+            const response = await fetch(`/api/users/${id}`);
+            const user = await response.json();
+
+            // Populate the form
+            userIdInput.value = user.id;
+            nameInput.value = user.name;
+            emailInput.value = user.email;
+
+            // Update form UI
+            formTitle.textContent = 'Edit User';
+            submitBtn.textContent = "Update User";
+            cancelBtn.style.display = "block";
+
+            // Scroll to form
+            document.querySelector(".form-container").scrollIntoView({ behavior: "smooth" });
+        } catch (error) {
+            console.error("Error loading user data:", error);
+            alert("Failed to load user data for editing")
+        }
+
+    }
 
     // Update an existing user
+    async function updateUser(id, user) {
+        try {
+            const response = await fetch(`/api/users/${id}`, {
+                method: "PUT",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify(user),
+            });
+
+            if (!response.ok) {
+                const error = await response.json();
+                throw new Error(error.error || "Failed to update user");
+            }
+
+            alert("User update successfully!");
+        } catch (error) {
+            console.error("Error updating users:", error);
+            alert(error.message);
+        }
+    }
 
     // Delete a user
+    async function deleteUser(id) {
+        if (!confirm("Are you sure you want to delete this user?")) {
+            return;
+        }
+
+        try {
+            const response = await fetch(`/api/users/${id}`, {
+                method: "DELETE"
+            });
+
+            if (!response.ok) {
+                const error = await response.json();
+                throw new Error(error.error || "Failed to delete user");
+            }
+
+            alert("user deleted successfully!");
+            fetchUsers();
+        } catch (error) {
+            console.error("Erro deleting user:", error);
+            alert(error.message);
+        }
+    }
 
     // Reset the form to its initial state
     function resetForm() {
