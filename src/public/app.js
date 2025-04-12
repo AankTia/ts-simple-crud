@@ -88,7 +88,7 @@ document.addEventListener("DOMContentLoaded", () => {
         });
 
         document.querySelectorAll(".delete-btn").forEach((btn) => {
-            btn.addEventListener("clicl", () => deleteUser(btn.dataset.id));
+            btn.addEventListener("click", () => deleteUser(btn.dataset.id));
         });
     }
 
@@ -182,7 +182,7 @@ document.addEventListener("DOMContentLoaded", () => {
             alert("user deleted successfully!");
             fetchUsers();
         } catch (error) {
-            console.error("Erro deleting user:", error);
+            console.error("Error deleting user:", error);
             alert(error.message);
         }
     }
