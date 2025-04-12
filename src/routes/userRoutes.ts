@@ -1,5 +1,5 @@
 import express, { Request, Response } from "express";
-import { createUser, getAllUsers, getUserById, updateUser } from "../models/UserService";
+import { createUser, getAllUsers, getUserById, updateUser, deleteUser } from "../models/UserService";
 import { UserInput } from "../models/User";
 
 const router = express.Router();
@@ -83,21 +83,21 @@ router.put("/:id", async (req: Request, res: Response): Promise<any> => {
     }
 });
 
-// // Delete user
-// router.delete("/:id", async (req: Request, res: Response): Promise<any> => {
-//     try {
-//         const id = parseInt(req.params.id);
-//         const success = await deleteUser(id);
+// Delete user
+router.delete("/:id", async (req: Request, res: Response): Promise<any> => {
+    try {
+        const id = parseInt(req.params.id);
+        const success = await deleteUser(id);
 
-//         if (!success) {
-//             return res.status(404).json({ error: "User not found" });
-//         }
+        if (!success) {
+            return res.status(404).json({ error: "User not found" });
+        }
 
-//         res.status(204).end();
-//     } catch (error) {
-//         console.error("Error deleting user:", error);
-//         res.status(500).json({ error: "Failed to delete user" });
-//     }
-// });
+        res.status(204).end();
+    } catch (error) {
+        console.error("Error deleting user:", error);
+        res.status(500).json({ error: "Failed to delete user" });
+    }
+});
 
 export default router;
